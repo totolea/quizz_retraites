@@ -29,13 +29,13 @@ const questionQ4: Question = {
   explainHTML: () => `
     <p>
       Le budget de la Défense française est de l'ordre de
-      <strong>${formatEuro(DEFENSE_BUDGET_FR_EUR)}</strong> par an.
+      ${formatEuro(DEFENSE_BUDGET_FR_EUR)} par an.
       Les retraites, elles, représentent environ
-      <strong>${formatEuro(ANNUAL_PENSIONS_EUR)}</strong>.
+      ${formatEuro(ANNUAL_PENSIONS_EUR)}.
     </p>
     <p>
       On parle donc d'un rapport de plusieurs fois :
-      les retraites coûtent <strong>bien plus cher</strong> que la Défense.
+      les retraites coûtent bien plus cher que la Défense.
     </p>
   `,
   sources: [

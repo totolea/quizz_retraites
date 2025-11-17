@@ -33,11 +33,11 @@ const questionQ8: Question = {
   explainHTML: () => `
     <p>
       50 000 iPhone 15 à environ ${formatEuro(IPHONE_15_PRICE_EUR)} pièce,
-      cela représente un total d'environ <strong>${formatEuro(iphoneTotalCostEUR)}</strong>.
+      cela représente un total d'environ ${formatEuro(iphoneTotalCostEUR)}.
     </p>
     <p>
       Une heure de retraites coûte aussi environ
-      <strong>${formatEuro(PENSIONS_PER_HOUR_EUR)}</strong>.
+      ${formatEuro(PENSIONS_PER_HOUR_EUR)}.
       On est donc presque exactement sur le même ordre de grandeur :
       une heure de retraites, c'est grosso modo un stock de 50 000 iPhone.
     </p>

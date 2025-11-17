@@ -56,5 +56,13 @@
     font-feature-settings: "ss01" on, "ss02" on;
     @apply bg-background text-foreground antialiased min-h-screen;
   }
+
+  .rich-text :where(strong, em, b, i) {
+    color: inherit;
+  }
+
+  .rich-text :where(strong, b) {
+    font-weight: 600;
+  }
 }
 

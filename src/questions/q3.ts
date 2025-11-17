@@ -29,12 +29,12 @@ const questionQ3: Question = {
   explainHTML: () => `
     <p>
       Le budget annuel de l'Union européenne est d'environ
-      <strong>${formatEuro(EU_BUDGET_2022_EUR)}</strong>,
+      ${formatEuro(EU_BUDGET_2022_EUR)},
       alors que le système de retraites français représente près de
-      <strong>${formatEuro(ANNUAL_PENSIONS_EUR)}</strong>.
+      ${formatEuro(ANNUAL_PENSIONS_EUR)}.
     </p>
     <p>
-      Autrement dit, <strong>la France dépense plus pour ses retraites</strong>
+      Autrement dit, la France dépense plus pour ses retraites
       que l'ensemble des 27 pays membres ne mettent en commun pour le budget de l'UE.
     </p>
   `,

@@ -26,13 +26,13 @@ const questionQ5: Question = {
   explainHTML: () => `
     <p>
       En additionnant toutes les dépenses d'éducation (État, collectivités, ménages),
-      on arrive autour de <strong>${formatEuro(EDUCATION_TOTAL_EUR)}</strong>.
+      on arrive autour de ${formatEuro(EDUCATION_TOTAL_EUR)}.
       Les retraites restent au-dessus, avec environ
-      <strong>${formatEuro(ANNUAL_PENSIONS_EUR)}</strong>.
+      ${formatEuro(ANNUAL_PENSIONS_EUR)}.
     </p>
     <p>
       Même en incluant toute l'éducation, des écoles primaires aux universités,
-      ce poste pèse <strong>moins lourd</strong> que les retraites.
+      ce poste pèse moins lourd que les retraites.
     </p>
   `,
   sources: [

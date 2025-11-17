@@ -29,9 +29,9 @@ const questionQ6: Question = {
   explainHTML: () => `
     <p>
       Apple réalise un chiffre d'affaires d'environ
-      <strong>${formatEuro(appleRevenueEUR)}</strong> par an.
+      ${formatEuro(appleRevenueEUR)} par an.
       Le coût des retraites françaises est autour de
-      <strong>${formatEuro(ANNUAL_PENSIONS_EUR)}</strong>.
+      ${formatEuro(ANNUAL_PENSIONS_EUR)}.
     </p>
     <p>
       Les deux montants sont donc de même ordre de grandeur,

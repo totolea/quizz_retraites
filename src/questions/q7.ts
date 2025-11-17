@@ -17,13 +17,13 @@ const questionQ7: Question = {
   explainHTML: () => `
     <p>
       La fortune cumulée de Bernard Arnault et François Pinault
-      est approximativement de <strong>${formatEuro(combinedFortunesEUR)}</strong>.
+      est approximativement de ${formatEuro(combinedFortunesEUR)}.
     </p>
     <p>
       Rapportée à un coût annuel de retraites autour de
-      <strong>${formatEuro(ANNUAL_PENSIONS_EUR)}</strong>,
+      ${formatEuro(ANNUAL_PENSIONS_EUR)},
       cette somme permettrait de financer les retraites pendant
-      <strong>quelques mois</strong>, pas des années.
+      quelques mois, pas des années.
     </p>
     <p>
       Même en "prenant tout" aux plus grandes fortunes,

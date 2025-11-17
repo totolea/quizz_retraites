@@ -29,12 +29,12 @@ const questionQ9: Question = {
   explainHTML: () => `
     <p>
       50 000 PlayStation 5 à environ ${formatEuro(PS5_PRICE_EUR)} pièce,
-      cela fait un total autour de <strong>${formatEuro(ps5TotalCostEUR)}</strong>.
+      cela fait un total autour de ${formatEuro(ps5TotalCostEUR)}.
     </p>
     <p>
       Une heure de retraites, c'est toujours environ
-      <strong>${formatEuro(PENSIONS_PER_HOUR_EUR)}</strong>,
-      donc <strong>plus cher</strong> qu'un stock de 50 000 PS5.
+      ${formatEuro(PENSIONS_PER_HOUR_EUR)},
+      donc plus cher qu'un stock de 50 000 PS5.
     </p>
     <p>
       Là encore, l'objectif est de montrer que ce qui paraît énorme

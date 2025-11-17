@@ -17,11 +17,11 @@ const questionQ12: Question = {
   explainHTML: () => `
     <p>
       McDonald's France réalise un chiffre d'affaires annuel
-      d'environ <strong>${formatEuro(MCDO_FRANCE_CA_EUR)}</strong>.
+      d'environ ${formatEuro(MCDO_FRANCE_CA_EUR)}.
     </p>
     <p>
       Avec un coût de retraites de ${formatEuro(PENSIONS_PER_DAY_EUR)} par jour,
-      il faut <strong>2 à 3 jours</strong> de retraites pour atteindre cette somme.
+      il faut 2 à 3 jours de retraites pour atteindre cette somme.
     </p>
     <p>
       Autrement dit, quelques jours de fonctionnement

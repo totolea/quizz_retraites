@@ -17,13 +17,13 @@ const questionQ10: Question = {
   explainHTML: () => `
     <p>
       Une minute de retraites représente environ
-      <strong>${formatEuro(PENSIONS_PER_MINUTE_EUR)}</strong>.
+      ${formatEuro(PENSIONS_PER_MINUTE_EUR)}.
       À environ ${formatEuro(LAMBORGHINI_PRICE_EUR)} la Lamborghini,
-      on peut en acheter près de <strong>3</strong> avec cette somme.
+      on peut en acheter près de 3 avec cette somme.
     </p>
     <p>
       Dire qu'une minute de retraites, c'est quasiment
-      <strong>trois supercars</strong>, donne une bonne idée
+      trois supercars, donne une bonne idée
       de la vitesse à laquelle les montants s'accumulent.
     </p>
   `,

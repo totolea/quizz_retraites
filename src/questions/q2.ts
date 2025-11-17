@@ -33,9 +33,9 @@ const questionQ2: Question = {
   explainHTML: () => `
     <p>
       En additionnant le PIB de la Gr\u00e8ce, du Maroc et de la Tunisie,
-      on obtient environ <strong>${formatEuro(combinedGmtGdpEUR)}</strong>.
+      on obtient environ ${formatEuro(combinedGmtGdpEUR)}.
       Une ann\u00e9e de retraites fran\u00e7aises tourne autour de
-      <strong>${formatEuro(ANNUAL_PENSIONS_EUR)}</strong>.
+      ${formatEuro(ANNUAL_PENSIONS_EUR)}.
     </p>
     <p>
       On est donc sur des grandeurs comparables :

@@ -30,3 +30,4 @@ export const PENSIONS_PER_DAY_EUR = ANNUAL_PENSIONS_EUR / 365;
 export const IDF_BUDGET_EUR = 5.2e9;
 export const MCDO_FRANCE_CA_EUR = 2.7e9;
 export const VELIB_BUDGET_EUR = 100e6;
+export const STATE_BUDGET_FRANCE_EUR = 255_000_000_000; // ~255 Md€ (ordre de grandeur)

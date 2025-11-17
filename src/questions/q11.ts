@@ -17,12 +17,12 @@ const questionQ11: Question = {
   explainHTML: () => `
     <p>
       Le budget annuel de la Région Île-de-France est d'environ
-      <strong>${formatEuro(IDF_BUDGET_EUR)}</strong>.
+      ${formatEuro(IDF_BUDGET_EUR)}.
     </p>
     <p>
       Une journée de retraites françaises coûte autour de
-      <strong>${formatEuro(PENSIONS_PER_DAY_EUR)}</strong>.
-      Il faut donc <strong>quelques jours</strong> (environ 5)
+      ${formatEuro(PENSIONS_PER_DAY_EUR)}.
+      Il faut donc quelques jours (environ 5)
       pour atteindre l'équivalent du budget annuel de l'Île-de-France.
     </p>
   `,

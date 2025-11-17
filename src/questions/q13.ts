@@ -17,14 +17,14 @@ const questionQ13: Question = {
   explainHTML: () => `
     <p>
       Le service Vélib' coûte autour de
-      <strong>${formatEuro(VELIB_BUDGET_EUR)}</strong> par an.
+      ${formatEuro(VELIB_BUDGET_EUR)} par an.
     </p>
     <p>
       Une heure de retraites, c'est environ
       ${formatEuro(PENSIONS_PER_HOUR_EUR)}.
       Il faut donc un peu plus de deux heures pour atteindre
-      les <strong>${formatEuro(VELIB_BUDGET_EUR)}</strong>,
-      soit <strong>environ 2 h 30</strong>.
+      les ${formatEuro(VELIB_BUDGET_EUR)},
+      soit environ 2 h 30.
     </p>
     <p>
       Le budget annuel d'un grand service public local

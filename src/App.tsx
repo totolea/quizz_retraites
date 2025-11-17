@@ -12,6 +12,7 @@ import {
 import { questions } from "@/questions";
 import type { Question } from "@/types/quiz";
 
+
 const QUESTIONS: Question[] = questions;
 const TOTAL_QUESTIONS = QUESTIONS.length;
 
@@ -185,7 +186,7 @@ export default function App() {
               className="mt-6 space-y-5"
             >
               <div
-                className="prose prose-sm dark:prose-invert max-w-none text-slate-50"
+                className="prose prose-sm dark:prose-invert rich-text max-w-none text-slate-50"
                 dangerouslySetInnerHTML={{ __html: current.explainHTML() }}
               />
 
