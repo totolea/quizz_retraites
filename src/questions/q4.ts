@@ -1,51 +1,63 @@
 ﻿import { formatEuro } from "@/lib/format";
-import { ANNUAL_PENSIONS_EUR, DEFENSE_BUDGET_FR_EUR } from "@/data/constants";
+import {
+  ANNUAL_PENSIONS_EUR,
+  DEFENSE_BUDGET_FR_EUR,
+  EU_DEFENSE_TOTAL_EUR,
+} from "@/data/constants";
 import type { Question } from "@/types/quiz";
 
 const questionQ4: Question = {
   id: "q4",
   title: "Les retraites coûtent-elles plus cher que le budget de la Défense ?",
   description:
-    "On entend souvent parler du coût de l'armée française. Mais si on compare au coût des retraites, tu dirais que :",
+    "On compare souvent les dépenses sociales et les dépenses militaires. Si tu mets côte à côte le coût annuel des retraites et le budget de la Défense française, tu dirais que :",
   options: [
     {
       id: "a",
-      label: "Le budget de la Défense reste largement supérieur aux retraites françaises.",
+      label: "La Défense coûte nettement plus cher que les retraites.",
     },
     {
       id: "b",
-      label: "Les retraites coûtent à peu près la même chose que la Défense, à quelques milliards près.",
+      label: "Les deux montants sont proches, dans le même ordre de grandeur.",
     },
     {
       id: "c",
-      label: "Les retraites représentent plusieurs fois le budget de la Défense française.",
+      label: "Les retraites coûtent plusieurs fois plus que le budget de la Défense.",
     },
     {
       id: "d",
-      label: "Les deux postes sont négligeables par rapport à la dette publique.",
+      label: "Les retraites dépassent la Défense, mais seulement d'environ 20 à 30 %.",
     },
   ],
   isCorrect: (choice) => choice === "c",
   explainHTML: () => `
     <p>
-      Le budget de la Défense française est de l'ordre de
-      ${formatEuro(DEFENSE_BUDGET_FR_EUR)} par an.
-      Les retraites, elles, représentent environ
+      Le budget de la Défense française est d'environ
+      ${formatEuro(DEFENSE_BUDGET_FR_EUR)}.
+      Le coût annuel des retraites françaises est proche de
       ${formatEuro(ANNUAL_PENSIONS_EUR)}.
     </p>
+
     <p>
-      On parle donc d'un rapport de plusieurs fois :
-      les retraites coûtent bien plus cher que la Défense.
+      Le rapport est donc clair : les retraites coûtent plusieurs fois plus
+      que le budget militaire national. Ce n’est pas un écart marginal :
+      on parle d’ordres de grandeur très différents.
+    </p>
+
+    <p class="mt-3">
+      Pour donner un repère supplémentaire (sans changer la réponse) :
+      si l’on additionne les budgets de Défense de tous les pays de l’Union européenne,
+      on obtient environ ${formatEuro(EU_DEFENSE_TOTAL_EUR)}.
+      Ce total reste en dessous du coût des retraites françaises,
+      mais dans un ordre de grandeur proche.
     </p>
   `,
   sources: [
+    { label: "Ministère des Armées — Budget", href: "https://www.defense.gouv.fr" },
+    { label: "INSEE — Dépenses de retraites", href: "https://www.insee.fr" },
     {
-      label: "Ministère des Armées — Budget",
-      href: "https://www.defense.gouv.fr",
-    },
-    {
-      label: "INSEE — Dépenses publiques par fonction",
-      href: "https://www.insee.fr",
+      label: "Agence européenne de défense — Données de dépenses militaires",
+      href: "https://eda.europa.eu",
     },
   ],
 };

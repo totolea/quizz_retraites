@@ -4,38 +4,48 @@ import type { Question } from "@/types/quiz";
 
 const questionQ3: Question = {
   id: "q3",
-  title: "Les retraites françaises dépassent-elles le budget annuel de l'Union européenne ?",
+  title: "Les retraites françaises valent-elles plus que le budget de l'Union européenne ?",
   description:
-    "27 pays financent ensemble le budget de l'UE. La France, seule, finance son système de retraites. Comment se situent les deux montants ?",
+    "Les 27 pays de l'Union européenne financent ensemble un budget commun. La France, seule, finance son système de retraites. Si tu compares le coût annuel des retraites françaises au budget annuel de l'UE, tu dirais que :",
   options: [
     {
       id: "a",
-      label: "Le budget de l'UE est au moins deux fois supérieur aux retraites françaises.",
+      label:
+        "Les retraites françaises sont nettement en dessous du budget annuel de l'UE : moins de la moitié.",
     },
     {
       id: "b",
-      label: "Les retraites françaises sont légèrement en dessous du budget total de l'UE.",
+      label:
+        "Les retraites françaises sont globalement du même ordre de grandeur que le budget annuel de l'UE.",
     },
     {
       id: "c",
-      label: "Les retraites françaises sont déjà plus élevées que le budget annuel de l'UE.",
+      label:
+        "Les retraites françaises sont nettement au-dessus du budget annuel de l'UE, de l'ordre de deux fois ce montant.",
     },
     {
       id: "d",
-      label: "Les deux montants sont négligeables par rapport aux dépenses militaires mondiales.",
+      label:
+        "Les retraites françaises sont très largement au-dessus : plus de trois fois le budget annuel de l'UE.",
     },
   ],
   isCorrect: (choice) => choice === "c",
   explainHTML: () => `
     <p>
       Le budget annuel de l'Union européenne est d'environ
-      ${formatEuro(EU_BUDGET_2022_EUR)},
-      alors que le système de retraites français représente près de
-      ${formatEuro(ANNUAL_PENSIONS_EUR)}.
+      ${formatEuro(EU_BUDGET_2022_EUR)}.
+      Le système de retraites français représente, lui, près de
+      ${formatEuro(ANNUAL_PENSIONS_EUR)} par an.
     </p>
     <p>
-      Autrement dit, la France dépense plus pour ses retraites
-      que l'ensemble des 27 pays membres ne mettent en commun pour le budget de l'UE.
+      On voit donc que les retraites françaises sont
+      nettement au-dessus du budget annuel de l'UE :
+      on est plutôt sur un rapport proche de deux pour un que sur un léger écart.
+    </p>
+    <p class="mt-2 text-sm opacity-80">
+      Les montants varient selon les années et les conventions de calcul,
+      mais l'ordre de grandeur reste le même : une seule politique publique nationale
+      pèse plus que le budget commun de l'ensemble des 27 pays.
     </p>
   `,
   sources: [

@@ -35,6 +35,9 @@ const ARNAULT_NET_WORTH_USD = 191.4e9; // 191,4 Md$
 // Ici on prend 1 $ ≈ 0.93 € (arrondi conservateur)
 const USD_TO_EUR = 0.93;
 
+export const EU_DEFENSE_TOTAL_EUR = 240_000_000_000; 
+// ordre de grandeur : ~240 Md€ pour l'ensemble UE selon l'AED
+
 // === DÉRIVÉS ===
 const fourMonthsPensionsEUR = (ANNUAL_PENSIONS_EUR / 12) * MONTHS; // ≈ 126.7 Md€
 const arnaultNetWorthEUR = ARNAULT_NET_WORTH_USD * USD_TO_EUR; // ≈ 178 Md€ avec 0.93
