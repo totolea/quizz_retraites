@@ -8,38 +8,40 @@ import type { Question } from "@/types/quiz";
 
 const questionQ8: Question = {
   id: "q8",
-  title: "Une heure de retraites : plus ou moins que 50 000 iPhone 15 ?",
+  // ✅ On précise que cette question est de type "slider"
+  kind: "slider",
+
+  title: "À ton avis, combien coûte une heure de retraites françaises ?",
   description:
-    "Une seule heure de retraites coûte déjà très cher. Si tu compares au prix de 50 000 iPhone 15 neufs, tu dirais que :",
-  options: [
-    {
-      id: "a",
-      label: "Une heure de retraites coûte beaucoup moins qu'un tel stock d'iPhone.",
-    },
-    {
-      id: "b",
-      label: "Une heure de retraites coûte un peu plus, mais on reste du même ordre de grandeur.",
-    },
-    {
-      id: "c",
-      label: "Une heure de retraites paie l'équivalent de plusieurs centaines de milliers d'iPhone.",
-    },
-    {
-      id: "d",
-      label: "C'est quasiment pile le prix d'un stock de 50 000 iPhone 15 : on est sur le même ordre de grandeur.",
-    },
-  ],
-  isCorrect: (choice) => choice === "d",
+    "Donne ton estimation du coût d’une heure de retraites en France (en euros). Ensuite, on la comparera au prix d’un stock de 50 000 iPhone 15 pour visualiser l’ordre de grandeur.",
+
+  // ✅ Configuration du slider (en euros)
+  sliderMin: 0,
+  sliderMax: 120_000_000, // 120 M€ max
+  sliderStep: 1_000_000,  // pas de 1 M€
+  sliderUnit: "€",
+  sliderCorrectValue: PENSIONS_PER_HOUR_EUR,
+  sliderTolerancePercent: 20, // bonne réponse si à ±20 % de la vraie valeur
+
   explainHTML: () => `
     <p>
-      50 000 iPhone 15 à environ ${formatEuro(IPHONE_15_PRICE_EUR)} pièce,
-      cela représente un total d'environ ${formatEuro(iphoneTotalCostEUR)}.
-    </p>
-    <p>
-      Une heure de retraites coûte aussi environ
+      Une heure de retraites françaises coûte environ
       ${formatEuro(PENSIONS_PER_HOUR_EUR)}.
-      On est donc presque exactement sur le même ordre de grandeur :
-      une heure de retraites, c'est grosso modo un stock de 50 000 iPhone.
+    </p>
+
+    <p>
+      Pour donner un repère plus concret : 50 000 iPhone 15, à environ
+      ${formatEuro(IPHONE_15_PRICE_EUR)} pièce, représentent un total
+      d’environ ${formatEuro(iphoneTotalCostEUR)}.
+      On est donc sur le même ordre de grandeur :
+      une seule heure de retraites équivaut à peu près au prix d’un stock
+      de 50 000 iPhone 15.
+    </p>
+
+    <p class="mt-2 text-sm opacity-80">
+      Le but n’est pas de comparer des iPhone et des pensions,
+      mais de donner un repère visuel sur l’ampleur des montants engagés
+      chaque heure dans le système de retraites.
     </p>
   `,
   sources: [
