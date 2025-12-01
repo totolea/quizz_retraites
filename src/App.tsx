@@ -33,6 +33,13 @@ export default function App() {
   const current = useMemo(() => QUESTIONS[index], [index]);
   const questionNumber = index + 1;
 
+  const formatSliderValue = (value: number, unit: string) => {
+    if (unit === "%") {
+      return `${value.toLocaleString("fr-FR")} %`;
+    }
+    return formatEuro(value);
+  };
+
   const handlePick = (choiceId: string) => {
     if (status !== "idle") return;
     if (isSliderQuestion(current)) return;
@@ -146,29 +153,32 @@ export default function App() {
                 </div>
 
                 <div className="px-2">
-                  <input
-                    type="range"
-                    min={current.sliderMin}
-                    max={current.sliderMax}
-                    step={current.sliderStep}
-                    value={
+                  {(() => {
+                    const currentSliderValue =
                       sliderValue !== null
                         ? sliderValue
-                        : (current.sliderMin + current.sliderMax) / 2
-                    }
-                    onChange={(e) => setSliderValue(Number(e.target.value))}
-                    className="w-full accent-sky-400"
-                  />
-                  <div className="mt-2 text-sm text-slate-50 text-center">
-                    Ton estimation :{" "}
-                    <span className="font-semibold">
-                      {formatEuro(
-                        sliderValue !== null
-                          ? sliderValue
-                          : (current.sliderMin + current.sliderMax) / 2,
-                      )}
-                    </span>
-                  </div>
+                        : (current.sliderMin + current.sliderMax) / 2;
+
+                    return (
+                      <>
+                        <input
+                          type="range"
+                          min={current.sliderMin}
+                          max={current.sliderMax}
+                          step={current.sliderStep}
+                          value={currentSliderValue}
+                          onChange={(e) => setSliderValue(Number(e.target.value))}
+                          className="w-full accent-sky-400"
+                        />
+                        <div className="mt-2 text-sm text-slate-50 text-center">
+                          Ton estimation :{" "}
+                          <span className="font-semibold">
+                            {formatSliderValue(currentSliderValue, current.sliderUnit)}
+                          </span>
+                        </div>
+                      </>
+                    );
+                  })()}
                 </div>
 
                 <div className="flex justify-center">

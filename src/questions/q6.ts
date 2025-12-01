@@ -1,59 +1,76 @@
-﻿import { formatEuro } from "@/lib/format";
-import { ANNUAL_PENSIONS_EUR, appleRevenueEUR } from "@/data/constants";
-import type { Question } from "@/types/quiz";
+﻿import type { Question } from "@/types/quiz";
 
 const questionQ6: Question = {
   id: "q6",
-  title: "Retraites françaises vs Apple : qui « pèse »  le plus ?",
+  title: "Qui épargne le plus : les retraités ou les jeunes actifs ?",
   description:
-    "Apple réalise chaque année l’un des plus gros chiffres d’affaires de la planète. Si tu compares ses ventes mondiales au coût annuel des retraites françaises, tu dirais que :",
+    "On imagine souvent que les jeunes actifs ont davantage besoin d’épargner que les retraités. Pourtant, si l’on regarde la réalité des taux d’épargne par âge, qui met de côté la plus grande part de son revenu ?",
+
   options: [
     {
       id: "a",
       label:
-        "Le chiffre d’affaires d’Apple est nettement supérieur : Apple pèse environ deux à trois fois plus que les retraites françaises.",
+        "Les jeunes actifs (25–34 ans) épargnent beaucoup plus que les retraités.",
     },
     {
       id: "b",
       label:
-        "Les deux montants sont très proches : les retraites et le chiffre d’affaires mondial d’Apple sont dans le même ordre de grandeur.",
+        "Les deux épargnent à peu près la même part de leur revenu.",
     },
     {
       id: "c",
       label:
-        "Les retraites françaises dépassent nettement Apple : environ une fois et demie à deux fois le chiffre d’affaires du groupe.",
+        "Les retraités ont un taux d’épargne plus élevé que les jeunes actifs.",
     },
     {
       id: "d",
       label:
-        "Apple reste très loin devant : ses ventes mondiales représentent plus de cinq fois le coût des retraites françaises.",
+        "Aucun des deux n’épargne vraiment : les deux taux sont proches de zéro.",
     },
   ],
-  isCorrect: (choice) => choice === "b",
+
+  isCorrect: (choice) => choice === "c",
+
   explainHTML: () => `
     <p>
-      Apple réalise un chiffre d’affaires mondial d’environ
-      ${formatEuro(appleRevenueEUR)}.
-      Le système de retraites français coûte autour de
-      ${formatEuro(ANNUAL_PENSIONS_EUR)} par an.
+      Selon les données de l’INSEE et de la Banque de France, le taux d’épargne
+      des retraités est supérieur à celui des jeunes actifs.
     </p>
 
     <p>
-      On est donc dans le même ordre de grandeur.
-      Ce n’est ni Apple qui écrase les retraites, ni l’inverse :
-      deux entités totalement différentes (une entreprise privée mondiale
-      vs un système social national) affichent pourtant des volumes financiers comparables.
+      En moyenne :
+      <ul class="mt-2 list-disc ml-6">
+        <li>25–34 ans : taux d’épargne autour de 8–10 %</li>
+        <li>Retraités : taux d’épargne autour de 15–16 %</li>
+      </ul>
+    </p>
+
+    <p class="mt-2">
+      Autrement dit, les retraités – malgré l’idée reçue selon laquelle ils “peuvent
+      moins épargner” – mettent en moyenne de côté une part plus importante
+      de leur revenu que les jeunes actifs.
     </p>
 
     <p class="mt-2 text-sm opacity-80">
-      C’est une illustration frappante d’un ordre de grandeur :
-      une politique publique française peut rivaliser avec les ventes mondiales
-      d’une des entreprises les plus puissantes au monde.
+      Le taux d’épargne dépend bien sûr du patrimoine, du niveau de vie et
+      du cycle de vie économique, mais l’écart observé est robuste :
+      les retraités épargnent davantage en proportion.
     </p>
   `,
+
   sources: [
-    { label: "Apple — Rapport annuel 2022", href: "https://investor.apple.com" },
-    { label: "INSEE — Comptes de la protection sociale", href: "https://www.insee.fr" },
+    {
+      label: "INSEE — Niveaux de vie et épargne par âge",
+      href: "https://www.insee.fr",
+    },
+    {
+      label: "Banque de France — Analyse des taux d’épargne",
+      href: "https://www.banque-france.fr",
+    },
+    {
+      label: "DREES — Revenus et patrimoine des retraités",
+      href: "https://drees.solidarites-sante.gouv.fr",
+    },
   ],
 };
 
