@@ -1,55 +1,66 @@
 ﻿import { formatEuro } from "@/lib/format";
-import { PS5_PRICE_EUR, ps5TotalCostEUR, PENSIONS_PER_HOUR_EUR } from "@/data/constants";
+import { ANNUAL_PENSIONS_EUR, RETIREMENT_CONTRIBUTIONS_EUR } from "@/data/constants";
 import type { Question } from "@/types/quiz";
 
 const questionQ9: Question = {
   id: "q9",
-  title: "Une heure de retraites : plus ou moins que 50 000 PlayStation 5 ?",
+  title: "Les cotisations retraite couvrent-elles vraiment toutes les pensions versées ?",
   description:
-    "50 000 consoles neuves, ça représente une somme énorme. Si tu compares à une seule heure de retraites, tu dirais que :",
+    "Chaque année, les actifs versent des cotisations retraite (sur leurs salaires) et, en face, des pensions sont versées aux retraités. Si tu compares le total des cotisations encaissées au coût des retraites versées, tu dirais que :",
   options: [
     {
       id: "a",
-      label: "Une heure de retraites ne couvre même pas la moitié de ce stock de PS5.",
+      label:
+        "Les cotisations retraite couvrent plus que nécessaire : elles dépassent clairement le montant des pensions versées.",
     },
     {
       id: "b",
-      label: "Une heure de retraites coûte à peu près autant que 50 000 PS5.",
+      label:
+        "Les cotisations retraite couvrent quasiment tout : on est à l’équilibre, à quelques milliards près.",
     },
     {
       id: "c",
-      label: "Une heure de retraites coûte clairement plus que 50 000 PS5, on dépasse ce stock.",
+      label:
+        "Les cotisations retraite ne suffisent pas tout à fait : il manque de l’ordre de 10 à 20 % pour payer toutes les pensions.",
     },
     {
       id: "d",
-      label: "Une heure de retraites correspond à quelques milliers de PS5 seulement.",
+      label:
+        "Les cotisations retraite ne suffisent pas du tout : elles ne couvrent même pas la moitié du montant des pensions.",
     },
   ],
   isCorrect: (choice) => choice === "c",
   explainHTML: () => `
     <p>
-      50 000 PlayStation 5 à environ ${formatEuro(PS5_PRICE_EUR)} pièce,
-      cela fait un total autour de ${formatEuro(ps5TotalCostEUR)}.
+      Le coût annuel des retraites françaises est d’environ
+      ${formatEuro(ANNUAL_PENSIONS_EUR)}.
+      Le total des cotisations vieillesse encaissées (cotisations sociales dédiées aux retraites)
+      est inférieur, autour de
+      ${formatEuro(RETIREMENT_CONTRIBUTIONS_EUR)}.
     </p>
+
     <p>
-      Une heure de retraites, c'est toujours environ
-      ${formatEuro(PENSIONS_PER_HOUR_EUR)},
-      donc plus cher qu'un stock de 50 000 PS5.
+      Autrement dit, les cotisations ne couvrent pas entièrement
+      les pensions versées : il manque typiquement de l’ordre de
+      10 à 20&nbsp;%, qui sont financés par d’autres recettes publiques
+      (impôts, transferts, subventions d’équilibre…).
     </p>
-    <p>
-      Là encore, l'objectif est de montrer que ce qui paraît énorme
-      à l'échelle de la consommation reste inférieur à une seule heure
-      de fonctionnement du système de retraites.
+
+    <p class="mt-2 text-sm opacity-80">
+      Les chiffres précis varient selon les années et les conventions de calcul,
+      mais l’idée à retenir reste la même :
+      les retraites ne sont pas financées uniquement par les cotisations des actifs,
+      il existe un complément structurel apporté par le reste des finances publiques.
     </p>
   `,
   sources: [
     {
-      label: "Sony — Informations produit PS5",
-      href: "https://www.playstation.com",
+      label: "INSEE — Comptes de la protection sociale",
+      href: "https://www.insee.fr",
     },
     {
-      label: "INSEE — Dépenses de retraites",
-      href: "https://www.insee.fr",
+      label: "COR — Rapports sur les ressources des régimes de retraite",
+      href: "https://www.cor-retraites.fr",
     },
   ],
 };

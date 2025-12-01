@@ -21,7 +21,7 @@ const questionQ8: Question = {
   sliderStep: 1_000_000,  // pas de 1 M€
   sliderUnit: "€",
   sliderCorrectValue: PENSIONS_PER_HOUR_EUR,
-  sliderTolerancePercent: 20, // bonne réponse si à ±20 % de la vraie valeur
+  sliderTolerancePercent: 10, // bonne réponse si à ±20 % de la vraie valeur
 
   explainHTML: () => `
     <p>

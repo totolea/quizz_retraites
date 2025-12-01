@@ -32,3 +32,6 @@ export const MCDO_FRANCE_CA_EUR = 2.7e9;
 export const VELIB_BUDGET_EUR = 100e6;
 export const STATE_BUDGET_FRANCE_EUR = 255_000_000_000; // ~255 Md€ (ordre de grandeur)
 export const EU_DEFENSE_TOTAL_EUR = 240_000_000_000;  // ordre de grandeur : ~240 Md€ pour l'ensemble UE selon l'AED
+export const RETIREMENT_CONTRIBUTIONS_EUR = 300_000_000_000;
+export const SOCIAL_SPENDING_TOTAL_EUR = 800_000_000_000;
+

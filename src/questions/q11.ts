@@ -4,11 +4,11 @@ import type { Question } from "@/types/quiz";
 
 const questionQ11: Question = {
   id: "q11",
-  title: "Quelques jours de retraites = le budget annuel de l'Île-de-France ?",
+  title: "En combien de jours de retraites atteint-on le budget de l'Île-de-France ?",
   description:
-    "Le système de retraites brasse-t-il autant en quelques jours qu'une grande région en une année entière ? Pour atteindre le budget annuel de la Région Île-de-France, il faut environ :",
+    "La Région Île-de-France dispose d’un budget annuel important pour les transports, les lycées, l’aménagement du territoire… Si l’on compare ce budget au coût des retraites françaises, combien de jours de retraites faut-il pour atteindre l’équivalent du budget annuel de la Région Île-de-France ?",
   options: [
-    { id: "a", label: "Une journée de retraites, à peine." },
+    { id: "a", label: "Environ 1 journée de retraites." },
     { id: "b", label: "Entre 4 et 6 jours de retraites." },
     { id: "c", label: "Entre 1 et 2 mois de retraites." },
     { id: "d", label: "Plus d'un an de retraites, on en est très loin." },
@@ -16,14 +16,19 @@ const questionQ11: Question = {
   isCorrect: (choice) => choice === "b",
   explainHTML: () => `
     <p>
-      Le budget annuel de la Région Île-de-France est d'environ
+      Le budget annuel de la Région Île-de-France est d’environ
       ${formatEuro(IDF_BUDGET_EUR)}.
     </p>
     <p>
       Une journée de retraites françaises coûte autour de
       ${formatEuro(PENSIONS_PER_DAY_EUR)}.
-      Il faut donc quelques jours (environ 5)
-      pour atteindre l'équivalent du budget annuel de l'Île-de-France.
+      Si l’on divise le budget de l’Île-de-France par ce coût quotidien,
+      on obtient un ordre de grandeur d’environ 5 jours.
+    </p>
+    <p class="mt-2 text-sm opacity-80">
+      Autrement dit, quelques jours de fonctionnement du système de retraites
+      suffisent à atteindre l’équivalent du budget annuel d’une des plus grandes
+      régions d’Europe.
     </p>
   `,
   sources: [

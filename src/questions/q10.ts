@@ -1,40 +1,56 @@
 ﻿import { formatEuro } from "@/lib/format";
-import { LAMBORGHINI_PRICE_EUR, PENSIONS_PER_MINUTE_EUR } from "@/data/constants";
+import {
+  ANNUAL_PENSIONS_EUR,
+  SOCIAL_SPENDING_TOTAL_EUR,
+} from "@/data/constants";
 import type { Question } from "@/types/quiz";
 
 const questionQ10: Question = {
   id: "q10",
-  title: "Une minute de retraites : combien de Lamborghini ?",
+  kind: "slider",
+
+  title: "Selon toi, quelle part des dépenses sociales va aux retraites ?",
   description:
-    "Une minute de retraites suffit-elle à acheter plusieurs supercars ? À l'échelle d'une Lamborghini autour de 260 000 €, tu dirais qu'une minute de retraites équivaut à :",
-  options: [
-    { id: "a", label: "À peine une demi-Lamborghini." },
-    { id: "b", label: "Environ 1 Lamborghini, pas plus." },
-    { id: "c", label: "Environ 3 Lamborghini : on est presque sur trois supercars à la minute." },
-    { id: "d", label: "Une dizaine de Lamborghini, c'est carrément une concession qui part chaque minute." },
-  ],
-  isCorrect: (choice) => choice === "c",
+    "Les dépenses de protection sociale regroupent les retraites, la santé, la famille, le chômage, etc. Parmi l’ensemble de ces dépenses, quelle part est consacrée aux retraites, selon toi ? Donne une estimation en pourcentage.",
+
+  // Slider en pourcentage (0–100 %)
+  sliderMin: 0,
+  sliderMax: 100,
+  sliderStep: 1,
+  sliderUnit: "%",
+  // ordre de grandeur : un peu plus de la moitié
+  sliderCorrectValue: 50,
+  sliderTolerancePercent: 10, // on accepte ~40–60 %
+
   explainHTML: () => `
     <p>
-      Une minute de retraites représente environ
-      ${formatEuro(PENSIONS_PER_MINUTE_EUR)}.
-      À environ ${formatEuro(LAMBORGHINI_PRICE_EUR)} la Lamborghini,
-      on peut en acheter près de 3 avec cette somme.
+      L’ensemble des dépenses de protection sociale en France
+      (retraites, santé, famille, chômage, minima sociaux, etc.)
+      représente environ
+      ${formatEuro(SOCIAL_SPENDING_TOTAL_EUR)} par an.
     </p>
+
     <p>
-      Dire qu'une minute de retraites, c'est quasiment
-      trois supercars, donne une bonne idée
-      de la vitesse à laquelle les montants s'accumulent.
+      Les retraites, à elles seules, pèsent autour de
+      ${formatEuro(ANNUAL_PENSIONS_EUR)}.
+      Autrement dit, elles représentent
+      un peu plus de la moitié de toutes les dépenses sociales :
+      on est autour de 50&nbsp;%.
+    </p>
+
+    <p class="mt-2 text-sm opacity-80">
+      L’idée à retenir : dans la grande catégorie « protection sociale »,
+      les retraites constituent de loin le premier poste de dépense.
     </p>
   `,
   sources: [
     {
-      label: "Lamborghini — Prix catalogue (ordre de grandeur)",
-      href: "https://www.lamborghini.com",
+      label: "INSEE — Comptes de la protection sociale",
+      href: "https://www.insee.fr",
     },
     {
-      label: "INSEE — Dépenses de retraites par minute",
-      href: "https://www.insee.fr",
+      label: "DREES — Les dépenses de protection sociale",
+      href: "https://drees.solidarites-sante.gouv.fr",
     },
   ],
 };
