@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, CheckCircle, CircleX, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/card";
 import { questions } from "@/questions";
 import { formatEuro } from "@/lib/format";
+import { submitScore } from "@/lib/stats";
+import type { ScoreStats } from "@/types/stats";
 import type { Question } from "@/types/quiz";
 
 function isSliderQuestion(
@@ -29,6 +31,10 @@ export default function App() {
   const [isEnd, setIsEnd] = useState(false);
   const [score, setScore] = useState(0);
   const [sliderValue, setSliderValue] = useState<number | null>(null);
+  const [scoreStats, setScoreStats] = useState<ScoreStats | null>(null);
+  const [scoreSyncState, setScoreSyncState] = useState<
+    "idle" | "loading" | "error"
+  >("idle");
 
   const current = useMemo(() => QUESTIONS[index], [index]);
   const questionNumber = index + 1;
@@ -78,6 +84,37 @@ export default function App() {
     setSliderValue(null);
   };
 
+  useEffect(() => {
+    if (!isEnd) return;
+
+    let cancelled = false;
+
+    const syncScore = async () => {
+      setScoreSyncState("loading");
+      try {
+        const stats = await submitScore({
+          score,
+          totalQuestions: TOTAL_QUESTIONS,
+        });
+        if (!cancelled) {
+          setScoreStats(stats);
+          setScoreSyncState("idle");
+        }
+      } catch (error) {
+        console.error("Impossible d'enregistrer le score", error);
+        if (!cancelled) {
+          setScoreSyncState("error");
+        }
+      }
+    };
+
+    syncScore();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isEnd, score]);
+
   if (!current && !isEnd) return null;
 
   if (isEnd) {
@@ -99,6 +136,44 @@ export default function App() {
               Tu as parcouru toutes les comparaisons. Tu pourras revenir ajouter
               de nouvelles questions ou affiner les ordres de grandeur.
             </p>
+            <div className="mt-6 space-y-3">
+              {scoreSyncState === "loading" && (
+                <p className="text-sm text-slate-200">
+                  Enregistrement de ton score en cours...
+                </p>
+              )}
+
+              {scoreSyncState === "error" && (
+                <p className="text-sm text-rose-200">
+                  Impossible d&apos;enregistrer le score pour l&apos;instant. Tu peux
+                  réessayer plus tard.
+                </p>
+              )}
+
+              {scoreStats && (
+                <div className="rounded-2xl border border-white/20 bg-slate-900/70 px-4 py-3 text-left shadow-inner space-y-2">
+                  <p className="text-sm text-slate-100">
+                    Ton score dépasse environ
+                    <span className="font-semibold text-white">
+                      {" "}
+                      {Math.round(scoreStats.percentile)}%
+                    </span>{" "}
+                    des participants.
+                  </p>
+                  <p className="text-sm text-slate-100">
+                    Score moyen enregistré :
+                    <span className="font-semibold text-white">
+                      {" "}
+                      {scoreStats.averageScore.toFixed(1)} / {TOTAL_QUESTIONS}
+                    </span>
+                  </p>
+                  <p className="text-xs text-slate-300">
+                    Nombre total de scores enregistrés : {" "}
+                    {scoreStats.totalSubmissions.toLocaleString("fr-FR")}.
+                  </p>
+                </div>
+              )}
+            </div>
           </CardContent>
         </Card>
       </div>
