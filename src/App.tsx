@@ -10,7 +10,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { questions } from "@/questions";
+import { formatEuro } from "@/lib/format";
 import type { Question } from "@/types/quiz";
+
+function isSliderQuestion(
+  q: Question,
+): q is import("@/types/quiz").SliderQuestion {
+  return q.kind === "slider";
+}
 
 
 const QUESTIONS: Question[] = questions;
@@ -21,13 +28,31 @@ export default function App() {
   const [status, setStatus] = useState<"idle" | "correct" | "wrong">("idle");
   const [isEnd, setIsEnd] = useState(false);
   const [score, setScore] = useState(0);
+  const [sliderValue, setSliderValue] = useState<number | null>(null);
 
   const current = useMemo(() => QUESTIONS[index], [index]);
   const questionNumber = index + 1;
 
   const handlePick = (choiceId: string) => {
     if (status !== "idle") return;
+    if (isSliderQuestion(current)) return;
+
     const ok = current.isCorrect(choiceId);
+    setStatus(ok ? "correct" : "wrong");
+    if (ok) {
+      setScore((prev) => prev + 1);
+    }
+  };
+
+  const handleSliderValidate = () => {
+    if (!isSliderQuestion(current) || status !== "idle" || sliderValue === null)
+      return;
+
+    const { sliderCorrectValue, sliderTolerancePercent } = current;
+    const diff = Math.abs(sliderValue - sliderCorrectValue);
+    const allowed = (sliderTolerancePercent / 100) * sliderCorrectValue;
+    const ok = diff <= allowed;
+
     setStatus(ok ? "correct" : "wrong");
     if (ok) {
       setScore((prev) => prev + 1);
@@ -43,6 +68,7 @@ export default function App() {
 
     setIndex(nextIndex);
     setStatus("idle");
+    setSliderValue(null);
   };
 
   if (!current && !isEnd) return null;
@@ -108,32 +134,82 @@ export default function App() {
 
         <CardContent className="relative pb-7">
           {/* OPTIONS : toutes mêmes hauteurs */}
-          <div className="grid gap-3 sm:grid-cols-2 items-stretch">
-            {current.options.map((opt) => (
-              <motion.div
-                key={opt.id}
-                className="h-full"
-                whileHover={
-                  status === "idle" ? { y: -2, scale: 1.01 } : undefined
-                }
-                whileTap={status === "idle" ? { scale: 0.98 } : undefined}
-              >
-                <Button
-                  variant="secondary"
-                  className="h-full w-full min-h-[5rem] 
-                  rounded-2xl 
-                  bg-slate-800/60 hover:bg-slate-700/60 
-                  border border-slate-600 
-                  text-white 
-                  shadow-sm 
-                  text-left whitespace-normal leading-snug px-4 py-3"
-                  onClick={() => handlePick(opt.id)}
-                  disabled={status !== "idle"}
-                >
-                  {opt.label}
-                </Button>
-              </motion.div>
-            ))}
+          <div className="mt-2">
+            {isSliderQuestion(current) ? (
+              <div className="space-y-4">
+                <div className="text-sm text-slate-100">
+                  <p>Déplace le curseur pour donner ton estimation.</p>
+                  <p className="mt-1 text-xs opacity-80">
+                    Intervalle : de {current.sliderMin.toLocaleString("fr-FR")} à{" "}
+                    {current.sliderMax.toLocaleString("fr-FR")} {current.sliderUnit}.
+                  </p>
+                </div>
+
+                <div className="px-2">
+                  <input
+                    type="range"
+                    min={current.sliderMin}
+                    max={current.sliderMax}
+                    step={current.sliderStep}
+                    value={
+                      sliderValue !== null
+                        ? sliderValue
+                        : (current.sliderMin + current.sliderMax) / 2
+                    }
+                    onChange={(e) => setSliderValue(Number(e.target.value))}
+                    className="w-full accent-sky-400"
+                  />
+                  <div className="mt-2 text-sm text-slate-50 text-center">
+                    Ton estimation :{" "}
+                    <span className="font-semibold">
+                      {formatEuro(
+                        sliderValue !== null
+                          ? sliderValue
+                          : (current.sliderMin + current.sliderMax) / 2,
+                      )}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex justify-center">
+                  <Button
+                    onClick={handleSliderValidate}
+                    disabled={status !== "idle"}
+                    className="rounded-2xl px-4 py-2 bg-sky-500 hover:bg-sky-400 text-slate-950 font-medium shadow-md"
+                  >
+                    Valider mon estimation
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div className="grid gap-3 sm:grid-cols-2 items-stretch">
+                {current.options.map((opt) => (
+                  <motion.div
+                    key={opt.id}
+                    className="h-full"
+                    whileHover={
+                      status === "idle" ? { y: -2, scale: 1.01 } : undefined
+                    }
+                    whileTap={status === "idle" ? { scale: 0.98 } : undefined}
+                  >
+                    <Button
+                      variant="secondary"
+                      className="h-full w-full min-h-[5rem] 
+              rounded-2xl 
+              bg-slate-800/60 hover:bg-slate-700/60 
+              border border-slate-600 
+              text-white 
+              shadow-sm 
+              text-left whitespace-normal leading-snug px-4 py-3"
+                      onClick={() => handlePick(opt.id)}
+                      disabled={status !== "idle"}
+                    >
+                      {opt.label}
+                    </Button>
+                  </motion.div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* feedback */}
