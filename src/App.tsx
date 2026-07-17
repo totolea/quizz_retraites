@@ -31,6 +31,8 @@ export default function App() {
   const [isEnd, setIsEnd] = useState(false);
   const [score, setScore] = useState(0);
   const [sliderValue, setSliderValue] = useState<number | null>(null);
+  const [selectedChoiceId, setSelectedChoiceId] = useState<string | null>(null);
+  const [streak, setStreak] = useState(0);
   const [scoreStats, setScoreStats] = useState<ScoreStats | null>(null);
   const [scoreSyncState, setScoreSyncState] = useState<
     "idle" | "loading" | "error"
@@ -38,6 +40,16 @@ export default function App() {
 
   const current = useMemo(() => QUESTIONS[index], [index]);
   const questionNumber = index + 1;
+  const progressPercent = ((questionNumber / TOTAL_QUESTIONS) * 100).toFixed(0);
+  const currentTheme = current?.theme ?? {
+    shell: "from-slate-950 via-indigo-950 to-violet-900",
+    card: "border-white/20 bg-slate-950/80",
+    badge: "border-slate-400/40 bg-slate-500/10 text-slate-200",
+    option: "border-slate-600 bg-slate-800/60 hover:bg-slate-700/60",
+    optionActive: "border-sky-300 bg-sky-500/20 ring-1 ring-sky-300/50",
+    button: "from-sky-400 to-cyan-300",
+    icon: "✨",
+  };
 
   const formatSliderValue = (value: number, unit: string) => {
     if (unit === "%") {
@@ -51,9 +63,13 @@ export default function App() {
     if (isSliderQuestion(current)) return;
 
     const ok = current.isCorrect(choiceId);
+    setSelectedChoiceId(choiceId);
     setStatus(ok ? "correct" : "wrong");
     if (ok) {
       setScore((prev) => prev + 1);
+      setStreak((prev) => prev + 1);
+    } else {
+      setStreak(0);
     }
   };
 
@@ -66,9 +82,13 @@ export default function App() {
     const allowed = (sliderTolerancePercent / 100) * sliderCorrectValue;
     const ok = diff <= allowed;
 
+    setSelectedChoiceId("slider");
     setStatus(ok ? "correct" : "wrong");
     if (ok) {
       setScore((prev) => prev + 1);
+      setStreak((prev) => prev + 1);
+    } else {
+      setStreak(0);
     }
   };
 
@@ -82,6 +102,7 @@ export default function App() {
     setIndex(nextIndex);
     setStatus("idle");
     setSliderValue(null);
+    setSelectedChoiceId(null);
   };
 
   useEffect(() => {
@@ -181,17 +202,28 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-violet-900 text-slate-50 flex items-center justify-center px-4 py-10 relative overflow-hidden">
+    <div className={`min-h-screen bg-gradient-to-br ${currentTheme.shell} text-slate-50 flex items-center justify-center px-4 py-10 relative overflow-hidden`}>
       <div className="pointer-events-none absolute inset-0 opacity-[0.12] bg-[radial-gradient(circle_at_top,_#ffffff33,_transparent_55%)]" />
 
       <header className="absolute top-4 left-0 right-0 flex justify-center">
-        <p className="text-xs sm:text-sm text-slate-100">
-          Ordres de grandeur des retraites françaises
-        </p>
+        <div className="flex items-center gap-3 rounded-full border border-white/10 bg-slate-950/60 px-4 py-2 shadow-lg backdrop-blur">
+          <div className="h-2 w-28 overflow-hidden rounded-full bg-white/10">
+            <div
+              className={`h-full rounded-full bg-gradient-to-r ${currentTheme.button}`}
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-slate-200">
+            {questionNumber}/{TOTAL_QUESTIONS}
+          </p>
+          <span className="rounded-full border border-amber-400/30 bg-amber-500/10 px-2 py-0.5 text-[11px] font-semibold text-amber-200">
+            combo x{streak}
+          </span>
+        </div>
       </header>
 
-      <Card className="relative w-full max-w-4xl rounded-3xl border border-white/20 bg-slate-950/80 backdrop-blur-xl shadow-[0_22px_70px_rgba(15,23,42,0.9)] text-slate-50">
-        <div className="pointer-events-none absolute -top-32 -right-20 h-64 w-64 rounded-full bg-violet-500/25 blur-3xl" />
+      <Card className={`relative w-full max-w-4xl rounded-3xl border backdrop-blur-xl shadow-[0_22px_70px_rgba(15,23,42,0.9)] text-slate-50 ${currentTheme.card}`}>
+        <div className={`pointer-events-none absolute -top-32 -right-20 h-64 w-64 rounded-full bg-violet-500/25 blur-3xl`} />
 
         <CardHeader className="relative space-y-3 pb-4">
           <div className="flex items-center justify-between text-xs sm:text-sm text-slate-100">
@@ -206,12 +238,20 @@ export default function App() {
             </span>
           </div>
 
-          <CardTitle className="text-2xl sm:text-3xl font-semibold tracking-tight leading-snug text-white">
-            {current.title}
-          </CardTitle>
+          <div className="flex items-center gap-3">
+            <span className="text-2xl">{currentTheme.icon}</span>
+            <CardTitle className="text-2xl sm:text-3xl font-semibold tracking-tight leading-snug text-white">
+              {current.title}
+            </CardTitle>
+          </div>
           <CardDescription className="text-sm sm:text-base text-slate-100 max-w-3xl">
             {current.description}
           </CardDescription>
+          {current.challengeHint && (
+            <div className={`inline-flex w-fit items-center rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] ${currentTheme.badge}`}>
+              {current.challengeHint}
+            </div>
+          )}
         </CardHeader>
 
         <CardContent className="relative pb-7">
@@ -279,13 +319,11 @@ export default function App() {
                   >
                     <Button
                       variant="secondary"
-                      className="h-full w-full min-h-[5rem] 
-              rounded-2xl 
-              bg-slate-800/60 hover:bg-slate-700/60 
-              border border-slate-600 
-              text-white 
-              shadow-sm 
-              text-left whitespace-normal leading-snug px-4 py-3"
+                      className={`h-full w-full min-h-[5rem] rounded-2xl border text-white shadow-sm text-left whitespace-normal leading-snug px-4 py-3 transition-all duration-200 ${currentTheme.option} ${
+                        status !== "idle" && selectedChoiceId === opt.id
+                          ? currentTheme.optionActive
+                          : ""
+                      }`}
                       onClick={() => handlePick(opt.id)}
                       disabled={status !== "idle"}
                     >

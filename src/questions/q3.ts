@@ -4,9 +4,19 @@ import type { Question } from "@/types/quiz";
 
 const questionQ3: Question = {
   id: "q3",
-  title: "Les retraites françaises valent-elles plus que le budget de l'Union européenne ?",
+  theme: {
+    shell: "from-fuchsia-950 via-violet-900 to-indigo-950",
+    card: "border-fuchsia-400/20 bg-slate-950/80",
+    badge: "border-fuchsia-400/40 bg-fuchsia-500/10 text-fuchsia-200",
+    option: "border-fuchsia-700/40 bg-slate-900/70 hover:bg-fuchsia-900/30",
+    optionActive: "border-fuchsia-300 bg-fuchsia-500/20 ring-1 ring-fuchsia-300/40",
+    button: "from-fuchsia-400 to-violet-300",
+    icon: "🧭",
+  },
+  title: "Une seule retraite française vaut-elle plus que le budget commun de l'UE ?",
   description:
-    "Les 27 pays de l'Union européenne financent ensemble un budget commun. La France, seule, finance son système de retraites. Si tu compares le coût annuel des retraites françaises au budget annuel de l'UE, tu dirais que :",
+    "L'UE a un budget commun énorme, mais la France finance aussi seule son système de retraites. Devine si la facture annuelle des retraites françaises est plus grande, plus petite ou du même ordre de grandeur :",
+  challengeHint: "Échelle européenne",
   options: [
     {
       id: "a",

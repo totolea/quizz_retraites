@@ -4,6 +4,15 @@ import type { Question } from "@/types/quiz";
 
 const questionQ2: Question = {
   id: "q2",
+  theme: {
+    shell: "from-emerald-950 via-teal-900 to-cyan-900",
+    card: "border-emerald-400/20 bg-slate-950/80",
+    badge: "border-emerald-400/40 bg-emerald-500/10 text-emerald-200",
+    option: "border-emerald-700/50 bg-slate-900/70 hover:bg-emerald-900/40",
+    optionActive: "border-emerald-300 bg-emerald-500/20 ring-1 ring-emerald-300/40",
+    button: "from-emerald-400 to-teal-300",
+    icon: "🌍",
+  },
   title: "Une ann\u00e9e de retraites : plus ou moins que trois pays r\u00e9unis ?",
   description:
     "L\u2019\u00e9chelle des retraites fran\u00e7aises est rarement intuitive. Si tu compares une ann\u00e9e de retraites au PIB cumul\u00e9 de la Gr\u00e8ce, du Maroc et de la Tunisie, tu dirais que :",

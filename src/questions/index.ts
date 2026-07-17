@@ -9,6 +9,8 @@ import questionQ7 from "./q7";
 import questionQ8 from "./q8";
 import questionQ10 from "./q10";
 import questionQ9 from "./q9";
+import questionQ12 from "./q12";
+import questionQ13 from "./q13";
 
 export const questions = [
   questionQ5,
@@ -22,4 +24,6 @@ export const questions = [
   questionQ8,
   questionQ10,
   questionQ9,
+  questionQ12,
+  questionQ13,
 ];

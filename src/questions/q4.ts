@@ -8,9 +8,19 @@ import type { Question } from "@/types/quiz";
 
 const questionQ4: Question = {
   id: "q4",
-  title: "Les retraites coûtent-elles plus cher que le budget de la Défense ?",
+  theme: {
+    shell: "from-slate-950 via-blue-950 to-sky-900",
+    card: "border-sky-400/20 bg-slate-950/80",
+    badge: "border-sky-400/40 bg-sky-500/10 text-sky-200",
+    option: "border-sky-700/40 bg-slate-900/70 hover:bg-sky-900/40",
+    optionActive: "border-sky-300 bg-sky-500/20 ring-1 ring-sky-300/40",
+    button: "from-sky-400 to-cyan-300",
+    icon: "🛡️",
+  },
+  title: "Les retraites coûtent-elles plus cher que la Défense ?",
   description:
-    "On compare souvent les dépenses sociales et les dépenses militaires. Si tu mets côte à côte le coût annuel des retraites et le budget de la Défense française, tu dirais que :",
+    "Quand on parle de grands postes de dépenses, la Défense et les retraites arrivent vite dans la conversation. Place ces deux colosses l'un à côté de l'autre et choisis le bon ordre de grandeur :",
+  challengeHint: "Comparaison de budgets",
   options: [
     {
       id: "a",

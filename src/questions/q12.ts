@@ -4,9 +4,19 @@ import type { Question } from "@/types/quiz";
 
 const questionQ12: Question = {
   id: "q12",
-  title: "Quelques jours de retraites = le CA annuel de McDonald's France ?",
+  theme: {
+    shell: "from-orange-950 via-amber-900 to-yellow-900",
+    card: "border-orange-400/20 bg-slate-950/80",
+    badge: "border-orange-400/40 bg-orange-500/10 text-orange-200",
+    option: "border-orange-700/40 bg-slate-900/70 hover:bg-orange-900/30",
+    optionActive: "border-orange-300 bg-orange-500/20 ring-1 ring-orange-300/40",
+    button: "from-orange-400 to-amber-300",
+    icon: "🍔",
+  },
+  title: "Quelques jours de retraites égalent-ils le CA annuel de McDonald's France ?",
   description:
-    "Les retraites françaises et le chiffre d'affaires de McDonald's France : même ordre de grandeur... ou pas du tout ? Pour atteindre un an de CA de McDo France, il faut environ :",
+    "Les grandes entreprises ont des chiffres d’affaires énormes, mais le système de retraites fonctionne à une autre échelle. Combien de temps de retraites faut-il pour atteindre le CA annuel de McDonald’s France ?",
+  challengeHint: "Échelle d’entreprise",
   options: [
     { id: "a", label: "Quelques heures de retraites seulement." },
     { id: "b", label: "2 à 3 jours de retraites." },

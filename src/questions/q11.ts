@@ -4,9 +4,19 @@ import type { Question } from "@/types/quiz";
 
 const questionQ11: Question = {
   id: "q11",
-  title: "En combien de jours de retraites atteint-on le budget de l'Île-de-France ?",
+  theme: {
+    shell: "from-slate-950 via-emerald-950 to-green-900",
+    card: "border-emerald-400/20 bg-slate-950/80",
+    badge: "border-emerald-400/40 bg-emerald-500/10 text-emerald-200",
+    option: "border-emerald-700/40 bg-slate-900/70 hover:bg-emerald-900/30",
+    optionActive: "border-emerald-300 bg-emerald-500/20 ring-1 ring-emerald-300/40",
+    button: "from-emerald-400 to-green-300",
+    icon: "🗺️",
+  },
+  title: "Combien de jours de retraites égalent le budget de l’Île-de-France ?",
   description:
-    "La Région Île-de-France dispose d’un budget annuel important pour les transports, les lycées, l’aménagement du territoire… Si l’on compare ce budget au coût des retraites françaises, combien de jours de retraites faut-il pour atteindre l’équivalent du budget annuel de la Région Île-de-France ?",
+    "Un budget régional peut sembler immense, jusqu’à ce qu’on le compare au flux de dépenses annuel des retraites. En quelques jours, ou en plusieurs mois, quelle est l’échelle la plus plausible ?",
+  challengeHint: "Comparaison de territoires",
   options: [
     { id: "a", label: "Environ 1 journée de retraites." },
     { id: "b", label: "Entre 4 et 6 jours de retraites." },

@@ -8,12 +8,22 @@ import type { Question } from "@/types/quiz";
 
 const questionQ8: Question = {
   id: "q8",
+  theme: {
+    shell: "from-slate-950 via-cyan-950 to-blue-950",
+    card: "border-cyan-400/20 bg-slate-950/80",
+    badge: "border-cyan-400/40 bg-cyan-500/10 text-cyan-200",
+    option: "border-cyan-700/40 bg-slate-900/70 hover:bg-cyan-900/30",
+    optionActive: "border-cyan-300 bg-cyan-500/20 ring-1 ring-cyan-300/40",
+    button: "from-cyan-400 to-blue-300",
+    icon: "📱",
+  },
   // ✅ On précise que cette question est de type "slider"
   kind: "slider",
 
   title: "À ton avis, combien coûte une heure de retraites françaises ?",
   description:
-    "Donne ton estimation du coût d’une heure de retraites en France (en euros). Ensuite, on la comparera au prix d’un stock de 50 000 iPhone 15 pour visualiser l’ordre de grandeur.",
+    "Le coût d’une heure de retraites paraît abstrait. Donne ton estimation en euros et on la comparera à un repère concret : un stock de 50 000 iPhone 15.",
+  challengeHint: "Estimation en euros",
 
   // ✅ Configuration du slider (en euros)
   sliderMin: 0,

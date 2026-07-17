@@ -7,11 +7,21 @@ import type { Question } from "@/types/quiz";
 
 const questionQ10: Question = {
   id: "q10",
+  theme: {
+    shell: "from-violet-950 via-purple-900 to-indigo-950",
+    card: "border-violet-400/20 bg-slate-950/80",
+    badge: "border-violet-400/40 bg-violet-500/10 text-violet-200",
+    option: "border-violet-700/40 bg-slate-900/70 hover:bg-violet-900/30",
+    optionActive: "border-violet-300 bg-violet-500/20 ring-1 ring-violet-300/40",
+    button: "from-violet-400 to-purple-300",
+    icon: "🧩",
+  },
   kind: "slider",
 
-  title: "Selon toi, quelle part des dépenses sociales va aux retraites ?",
+  title: "Quelle part des dépenses sociales va aux retraites ?",
   description:
-    "Les dépenses de protection sociale regroupent les retraites, la santé, la famille, le chômage, etc. Parmi l’ensemble de ces dépenses, quelle part est consacrée aux retraites, selon toi ? Donne une estimation en pourcentage.",
+    "Dans le grand panier de la protection sociale, les retraites représentent une part très importante. Sans chercher la réponse exacte, estime la proportion qui leur revient.",
+  challengeHint: "Répartition des dépenses",
 
   // Slider en pourcentage (0–100 %)
   sliderMin: 0,

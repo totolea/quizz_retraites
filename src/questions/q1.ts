@@ -4,9 +4,19 @@ import type { Question } from "@/types/quiz";
 
 const questionQ1: Question = {
   id: "q1",
-  title: "Les retraites françaises pèsent-elles plus que le budget de l'État ?",
+  theme: {
+    shell: "from-slate-950 via-indigo-950 to-violet-900",
+    card: "border-white/20 bg-slate-950/80",
+    badge: "border-sky-400/40 bg-sky-500/10 text-sky-200",
+    option: "border-slate-600 bg-slate-800/60 hover:bg-slate-700/60",
+    optionActive: "border-sky-300 bg-sky-500/20 ring-1 ring-sky-300/50",
+    button: "from-sky-400 to-cyan-300",
+    icon: "🧠",
+  },
+  title: "Le coût des retraites dépasse-t-il vraiment le budget de l'État ?",
   description:
-    "On parle souvent du « budget de l'État » comme d'un montant gigantesque. Si tu compares ce budget annuel au coût des retraites françaises, tu dirais que :",
+    "Le budget de l'État fait souvent office de référence absolue. Sans regarder les chiffres, choisis l'option qui te semble la plus proche du vrai ordre de grandeur :",
+  challengeHint: "Défi d'ordre de grandeur",
   options: [
     {
       id: "a",

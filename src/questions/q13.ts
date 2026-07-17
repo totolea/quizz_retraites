@@ -4,9 +4,19 @@ import type { Question } from "@/types/quiz";
 
 const questionQ13: Question = {
   id: "q13",
-  title: "2 h 30 de retraites = le budget annuel de Vélib' ?",
+  theme: {
+    shell: "from-cyan-950 via-sky-900 to-blue-900",
+    card: "border-cyan-400/20 bg-slate-950/80",
+    badge: "border-cyan-400/40 bg-cyan-500/10 text-cyan-200",
+    option: "border-cyan-700/40 bg-slate-900/70 hover:bg-cyan-900/30",
+    optionActive: "border-cyan-300 bg-cyan-500/20 ring-1 ring-cyan-300/40",
+    button: "from-cyan-400 to-sky-300",
+    icon: "🚲",
+  },
+  title: "2 h 30 de retraites égalent-elles le budget annuel de Vélib' ?",
   description:
-    "Le service Vélib' coûte de l'ordre de 100 M€ par an. Combien de temps de retraites faut-il pour atteindre ce montant ?",
+    "Le Vélib’ est souvent présenté comme un service coûteux. Mais en termes de retraites, quelle est la bonne échelle ? Devine combien d’heures de retraites il faut pour atteindre ce budget.",
+  challengeHint: "Service public local",
   options: [
     { id: "a", label: "Quelques minutes de retraites, à peine." },
     { id: "b", label: "Environ 2 h 30 de retraites pour atteindre ce budget." },

@@ -3,10 +3,22 @@ export type QuestionSource = {
   href: string;
 };
 
+export type QuestionTheme = {
+  shell: string;
+  card: string;
+  badge: string;
+  option: string;
+  optionActive: string;
+  button: string;
+  icon: string;
+};
+
 export type BaseQuestion = {
   id: string;
   title: string;
   description: string;
+  challengeHint?: string;
+  theme?: QuestionTheme;
   explainHTML: () => string;
   sources: QuestionSource[];
 };

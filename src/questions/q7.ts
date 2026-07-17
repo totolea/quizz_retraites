@@ -4,9 +4,19 @@ import type { Question } from "@/types/quiz";
 
 const questionQ7: Question = {
   id: "q7",
-  title: "Tout prendre aux milliardaires : on finance combien de retraites ?",
+  theme: {
+    shell: "from-zinc-950 via-stone-900 to-neutral-900",
+    card: "border-white/20 bg-slate-950/80",
+    badge: "border-zinc-400/40 bg-zinc-500/10 text-zinc-200",
+    option: "border-zinc-700/40 bg-slate-900/70 hover:bg-zinc-800/50",
+    optionActive: "border-zinc-300 bg-zinc-500/20 ring-1 ring-zinc-300/40",
+    button: "from-zinc-400 to-stone-300",
+    icon: "💎",
+  },
+  title: "Prendre aux milliardaires suffirait-il à régler le problème ?",
   description:
-    "Si l’on saisissait l’intégralité de la fortune cumulée de Bernard Arnault et François Pinault, combien de temps cela permettrait-il de financer les retraites françaises ?",
+    "La fortune de quelques milliardaires attire l’attention. Mais si l’on récupérait tout cela, combien de temps cela suffirait-il à financer les retraites françaises ?",
+  challengeHint: "Économie des fortunes",
   options: [
     { id: "a", label: "Quelques semaines, tout au plus." },
     { id: "b", label: "Quelques mois seulement, avant de revenir au problème initial." },
