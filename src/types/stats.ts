@@ -1,11 +1,6 @@
-export type ScoreSubmission = {
-  score: number;
-  totalQuestions: number;
-};
-
+// src/types/stats.ts
 export type ScoreStats = {
   averageScore: number;
-  percentile: number;
   totalSubmissions: number;
-  distribution: Record<string, number>;
+  percentile: number;
 };

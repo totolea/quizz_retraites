@@ -1,19 +1,15 @@
-import type { ScoreStats, ScoreSubmission } from "@/types/stats";
+// src/lib/stats.ts
+import type { ScoreStats } from "@/types/stats";
 
-const SCORE_ENDPOINT = "/api/score";
-
-async function parseResponse(response: Response) {
-  const contentType = response.headers.get("content-type");
-  if (contentType?.includes("application/json")) {
-    return response.json();
-  }
-  return response.text();
-}
+type SubmitScorePayload = {
+  score: number;
+  totalQuestions: number;
+};
 
 export async function submitScore(
-  payload: ScoreSubmission,
+  payload: SubmitScorePayload,
 ): Promise<ScoreStats> {
-  const res = await fetch(SCORE_ENDPOINT, {
+  const res = await fetch("/api/score", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -21,15 +17,10 @@ export async function submitScore(
     body: JSON.stringify(payload),
   });
 
-  const data = await parseResponse(res);
-
   if (!res.ok) {
-    throw new Error(
-      typeof data === "string"
-        ? data
-        : data?.message ?? "Impossible d'enregistrer le score",
-    );
+    throw new Error(`API /api/score error: ${res.status}`);
   }
 
-  return data as ScoreStats;
+  const data = (await res.json()) as ScoreStats;
+  return data;
 }
